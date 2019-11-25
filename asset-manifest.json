@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/nice/static/css/main.9bbf4f41.chunk.css",
+    "main.js": "/nice/static/js/main.3e7b859e.chunk.js",
+    "main.js.map": "/nice/static/js/main.3e7b859e.chunk.js.map",
+    "runtime-main.js": "/nice/static/js/runtime-main.11a9287e.js",
+    "runtime-main.js.map": "/nice/static/js/runtime-main.11a9287e.js.map",
+    "static/js/2.6b4c6e5e.chunk.js": "/nice/static/js/2.6b4c6e5e.chunk.js",
+    "static/js/2.6b4c6e5e.chunk.js.map": "/nice/static/js/2.6b4c6e5e.chunk.js.map",
+    "index.html": "/nice/index.html",
+    "precache-manifest.69407db19b46dbc6b1fedcf7bbddee4c.js": "/nice/precache-manifest.69407db19b46dbc6b1fedcf7bbddee4c.js",
+    "service-worker.js": "/nice/service-worker.js",
+    "static/css/main.9bbf4f41.chunk.css.map": "/nice/static/css/main.9bbf4f41.chunk.css.map",
+    "static/media/logo.svg": "/nice/static/media/logo.25bf045c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.11a9287e.js",
+    "static/js/2.6b4c6e5e.chunk.js",
+    "static/css/main.9bbf4f41.chunk.css",
+    "static/js/main.3e7b859e.chunk.js"
+  ]
+}
