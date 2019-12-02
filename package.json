@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^3.4.1",
     "confetti-js": "0.0.15",
     "gh-pages": "^2.1.1",
     "react": "^16.12.0",
