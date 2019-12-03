@@ -2,14 +2,19 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css//bootstrap.min.css';
 
-var speed = 50; /* The speed/duration of the effect in milliseconds */
+var speed = 25; /* The speed/duration of the effect in milliseconds */
 var messageCount = 0;
+var messagePrintSpeed = 2000;
 
-class MessagePage extends React.Component {
+class AutoScrollPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.typeWriter = this.typeWriter.bind(this);
 		this.rotateMessages = this.rotateMessages.bind(this);
+	}
+
+	componentDidMount() {
+	    this.rotateMessages();
 	}
 
 	updateScrollHeight() {
@@ -30,21 +35,19 @@ class MessagePage extends React.Component {
 			document.getElementById("tempMessageArea").innerHTML += message.charAt(count);
 			count++;
 			setTimeout(this.typeWriter,speed, message, count);
-		} else {
-			document.getElementById("messageButton").disabled = false;
 		}
 	}
 
 	rotateMessages() {
-		document.getElementById("messageButton").disabled = true;
 		this.clearAndUpdateRollingMessageBlock();
 		var i=0;
 		if(messageCount < this.props.messages.length) {
 			document.getElementById("rollingMessage").innerHTML += "<br><br>";
 			this.typeWriter(this.props.messages[messageCount], i);
 			messageCount++;
-		} else {
-		    this.props.pageChange(this.props.nextPage);
+			setTimeout(this.rotateMessages, messagePrintSpeed);
+		} else{
+		        this.props.pageChange(this.props.nextPage);
 		}
 	}
 
@@ -56,7 +59,7 @@ class MessagePage extends React.Component {
 		      <p id="tempMessageArea"/>
 		    </div>
 		    <div className="col-md-12">
-		        <button id="messageButton" onClick={this.rotateMessages}>--></button>
+		        <button id="messageButton">--></button>
 		    </div>
 		</div>);
 	}
@@ -64,4 +67,4 @@ class MessagePage extends React.Component {
 
 }
 
-export default MessagePage;
+export default AutoScrollPage;
