@@ -37,10 +37,6 @@ var messageBlocks = [
 ];
 
 class IntroPage extends React.Component {
-    constructor(props){
-        super(props);
-    }
-
     render() {
         return(
 	    <MessagePage messages={messageBlocks} nextPage={1} pageChange={this.props.pageChange}/>

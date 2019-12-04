@@ -14,10 +14,9 @@ var messages = [
     '.',
     '.',
     '.',
-    '-------------CHAPTER 1---------', 
 ]
 
-class ChapterOne extends React.Component {
+class Sike extends React.Component {
     render() {
         return(
 	    <AutoScrollPage nextPage={2} messages={messages} pageChange={this.props.pageChange}/>
@@ -25,4 +24,4 @@ class ChapterOne extends React.Component {
     }
 }
 
-export default ChapterOne;
+export default Sike;

@@ -29,6 +29,7 @@
     width: 80%;
     height: 80%;
     overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .rollingMessageFont {
@@ -37,6 +38,11 @@
     line-height: 1.4em;
     position: relative;
     bottom: 20px;
+}
+
+.autoImage {
+    height: 300px;
+    width: auto;
 }
 
 #tempMessageArea {

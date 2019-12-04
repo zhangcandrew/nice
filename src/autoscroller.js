@@ -3,8 +3,8 @@ import './App.css';
 import 'bootstrap/dist/css//bootstrap.min.css';
 
 var speed = 25; /* The speed/duration of the effect in milliseconds */
-var messageCount = 0;
 var messagePrintSpeed = 2000;
+const images = require.context('./pics', true);
 
 class AutoScrollPage extends React.Component {
 	constructor(props) {
@@ -13,8 +13,8 @@ class AutoScrollPage extends React.Component {
 		this.rotateMessages = this.rotateMessages.bind(this);
 	}
 
-	componentDidMount() {
-	    this.rotateMessages();
+	componentDidMount(){
+	    this.rotateMessages(0);
 	}
 
 	updateScrollHeight() {
@@ -30,6 +30,28 @@ class AutoScrollPage extends React.Component {
 	    this.updateScrollHeight()
 	}
 
+	printSpecialMessage(message){
+	    var secondColon = message.substring(4, message.length).indexOf(":")+4;
+	    var firstColon = message.indexOf(":");
+	    var specialChar = message.substring(firstColon+1, secondColon);
+	    var tempMessageArea = document.getElementById("tempMessageArea");
+	    var realMessage = message.substring(secondColon+1, message.length);
+	    if(specialChar  === "f"){
+		var textBoxSize = tempMessageArea.clientWidth;
+		var computedTextSize = parseFloat(getComputedStyle(tempMessageArea).fontSize);
+
+		var n  = Math.floor(((textBoxSize/computedTextSize)-realMessage.length)/2);
+		var fillString = new Array(n+1).join("-");
+	        var finalMessage = fillString+realMessage+fillString;
+		this.typeWriter(finalMessage, 0);
+	    } else if (specialChar === "img") {
+	        var img = document.createElement("img");
+		img.src = images(realMessage);
+		img.className = "autoImage";
+	        tempMessageArea.appendChild(img); 
+	    }
+	}
+
 	typeWriter(message, count) {
 		if (count < message.length) {
 			document.getElementById("tempMessageArea").innerHTML += message.charAt(count);
@@ -38,16 +60,19 @@ class AutoScrollPage extends React.Component {
 		}
 	}
 
-	rotateMessages() {
+	rotateMessages(messageCount) {
 		this.clearAndUpdateRollingMessageBlock();
 		var i=0;
 		if(messageCount < this.props.messages.length) {
 			document.getElementById("rollingMessage").innerHTML += "<br><br>";
-			this.typeWriter(this.props.messages[messageCount], i);
-			messageCount++;
-			setTimeout(this.rotateMessages, messagePrintSpeed);
+			if(this.props.messages[messageCount].substring(0, 4) === "spc:"){
+			    this.printSpecialMessage(this.props.messages[messageCount]);
+			} else {
+			    this.typeWriter(this.props.messages[messageCount], i);
+			}
+			setTimeout(this.rotateMessages, messagePrintSpeed, messageCount+1);
 		} else{
-		        this.props.pageChange(this.props.nextPage);
+		        document.getElementById("messageButton").onclick = () => {this.props.pageChange(this.props.nextPage)};
 		}
 	}
 
@@ -59,7 +84,7 @@ class AutoScrollPage extends React.Component {
 		      <p id="tempMessageArea"/>
 		    </div>
 		    <div className="col-md-12">
-		        <button id="messageButton">--></button>
+		        <button id="messageButton" onClick={()=>{}}>--></button>
 		    </div>
 		</div>);
 	}

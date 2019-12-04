@@ -2,13 +2,14 @@ import React from 'react';
 import './App.css';
 import './index.css';
 import IntroPage from './introPage.js';
-import ChapterOne from './chapter1.js';
+import Sike from './sike.js';
+import ChapterOne from './chap1.js';
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      pageNum: 0
+      pageNum: 2
     };
     this.childChangePageNum = this.childChangePageNum.bind(this);
   }
@@ -23,8 +24,10 @@ class App extends React.Component {
     if(this.state.pageNum === 0){
       return <IntroPage pageChange={this.childChangePageNum}/>;
     } else if(this.state.pageNum === 1){
+      return <Sike pageChange={this.childChangePageNum}/>;
+    } else if(this.state.pageNum === 2){
       return <ChapterOne pageChange={this.childChangePageNum}/>;
-    } else {
+    }  else {
       return <div/>;
     }
   }
