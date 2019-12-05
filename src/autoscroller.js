@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css//bootstrap.min.css';
+import {CreateAndAnimateBox} from './minigames.js';
 
-var speed = 25; /* The speed/duration of the effect in milliseconds */
+var speed = 20; /* The speed/duration of the effect in milliseconds */
 var messagePrintSpeed = 2000;
 const images = require.context('./pics', true);
 
@@ -48,7 +49,10 @@ class AutoScrollPage extends React.Component {
 	        var img = document.createElement("img");
 		img.src = images(realMessage);
 		img.className = "autoImage";
-	        tempMessageArea.appendChild(img); 
+	        document.getElementById("rollingMessage").appendChild(img); 
+		this.updateScrollHeight();
+	    } else if (specialChar === "mg") {
+	        CreateAndAnimateBox();
 	    }
 	}
 
@@ -67,6 +71,9 @@ class AutoScrollPage extends React.Component {
 			document.getElementById("rollingMessage").innerHTML += "<br><br>";
 			if(this.props.messages[messageCount].substring(0, 4) === "spc:"){
 			    this.printSpecialMessage(this.props.messages[messageCount]);
+			    if(this.props.messages[messageCount].substring(4, 6) === "mg"){
+			        return;
+			    }
 			} else {
 			    this.typeWriter(this.props.messages[messageCount], i);
 			}
@@ -77,7 +84,7 @@ class AutoScrollPage extends React.Component {
 	}
 
 	render() {
-		return(<div className="rollingMessageBlockAndButton col-md-12">
+		return(<div id="messageAndButton" className="rollingMessageBlockAndButton col-md-12">
 		    <div id="rollingMessageBlock" className="rollingMessageBlock rollingMessageFont col-md-12">
 		      <p id="rollingMessage">
 		      </p>

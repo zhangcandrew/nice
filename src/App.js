@@ -36,7 +36,7 @@ class App extends React.Component {
      return (
       <div className="App">
         <header className="App-header">
-	  <div className="omniBack">
+	  <div id="omniBack" className="omniBack">
 	     {this.displayProperPage()}
 	  </div>
         </header>

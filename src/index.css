@@ -10,10 +10,14 @@
     left: 0px;
 }
 
+
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 .omniBack {
     width: 80%;
     height: 100%;
-    position: absolute;    
+    position: absolute;
+    padding: 25px;   
+    font-family: 'Press Start 2P', cursive;
 }
 
 .rollingMessageBlockAndButton {
@@ -21,7 +25,6 @@
 }
 
 
-@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 .rollingMessageBlock {
     margin-left: auto;
     margin-right: auto;
@@ -33,7 +36,6 @@
 }
 
 .rollingMessageFont {
-    font-family: 'Press Start 2P', cursive;
     font-size: .6em;
     line-height: 1.4em;
     position: relative;
@@ -56,4 +58,7 @@
     color: black;
 }
 
-
+#miniGame {
+    outline-style: solid;
+    outline-color: white;
+}
