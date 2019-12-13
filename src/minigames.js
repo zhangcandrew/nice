@@ -1,4 +1,4 @@
-export function CreateAndAnimateBox() {
+export function CreateAndAnimateBox(gameFunc, callback) {
     var omniBack = document.getElementById("omniBack");
     var messageAndButton = document.getElementById("messageAndButton");
     messageAndButton.style.display="none";
@@ -26,7 +26,7 @@ export function CreateAndAnimateBox() {
 	    }
 	}
     }
-    setTimeout(getReady, 3000);
+    setTimeout(getReady, 3000, gameFunc, callback);
 }
 
 function pixelToNum(pixelNum) {
@@ -35,16 +35,16 @@ function pixelToNum(pixelNum) {
     return parseInt(actualNum);
 }
 
-function getReady() {
+function getReady(gameFunc, callBack) {
     displayOnGame("G E T     R E A D Y!");
     setTimeout(displayOnGame, 2000, "3");
     setTimeout(displayOnGame, 3000, "2");
     setTimeout(displayOnGame, 4000, "1");
     setTimeout(displayOnGame, 5000, "GO!");
-    setTimeout(displayOnGame, 6000, "");
+    setTimeout(gameFunc, 6000, callBack);
 }
 
-function displayOnGame(message) {
+export function displayOnGame(message) {
     var gameDiv = document.getElementById("miniGame");
     gameDiv.innerHTML = message;
 }

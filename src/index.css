@@ -61,4 +61,16 @@
 #miniGame {
     outline-style: solid;
     outline-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    padding: 30px;
+}
+
+#mashButton {
+    color: black;
+    background-color: white;
+    width: 200px;
+    height: 35px;
 }

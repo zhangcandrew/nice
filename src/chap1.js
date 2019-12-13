@@ -1,8 +1,9 @@
 import React from 'react';
 import AutoScrollPage from './autoscroller.js';
-
+import {displayOnGame} from './minigames.js';
 
 var messages = [
+    'spc:mg:0',
     'spc:f:CHAPTER 1',
     'THE TROUBLE BEGINS',
     '(aka freshman year)',
@@ -10,7 +11,7 @@ var messages = [
     '',
     'erin',
     'spc:img:./erinchap1.JPG',
-    '(18, mega-virgin, looks the same now, thinks liking juiceWRLD is a personality trait)',
+    '(18, mega-virgin, looks the same now, check out her post on SAD)',
     '',
     '',
     'yang',
@@ -34,23 +35,87 @@ var messages = [
     ' a big through CASA is a good idea......',
     '',
     '',
-    'get ready',
-    'minigame START!',
+    'get ready...',
+    'it\'s time for a minigame!', 
+    '(this shit took forever to code)', 
+    '((not really))',
+    'spc:mg:0',
+    '...', 
+    'ok well u were supposed to win that...', 
+    'so the story would progress...', 
+    '.', 
+    'let\'s uh, try a version',
+    'more your speed',
     'spc:mg:1',
 ]
 
 class ChapterOne extends React.Component {
     constructor(props){
         super(props);
-	var minigames = [
-	    this.rapidClickMinigame,
-	]
+	this.rapidClickMinigame = this.rapidClickMinigame.bind(this);
+	this.rapidClickMinigame2 = this.rapidClickMinigame2.bind(this);
+    }
 
-    } 
+    rapidClickMinigame(callback){
+        var mashCount = 0;
+	
+	function addMashCount() {
+	    mashCount += 1;
+	}
+	
+	function tallyAndCheck() {
+	    if(mashCount > 200) {
+	        displayOnGame("wtf... you actually did it");
+	    } else {
+	        displayOnGame("you suck lol...  (" + mashCount + " clicks)");
+	    }
+	    console.log(callback);
+	    setTimeout(2000, callback);
+	}
+	
+	function addButtonAndStartGame() {
+		document.getElementById("miniGame").innerHTML = "";
+		var button = document.createElement("button");
+		button.onclick = () => { addMashCount() };
+		button.id = "mashButton";
+		button.innerHTML = "APPLY!";
+		document.getElementById("miniGame").appendChild(button);
+	}
+	
+	displayOnGame("Hit the button as fast as you can!");
+	setTimeout(displayOnGame, 2500, "Hit the button over 200 times in 10 seconds to win!");
+	setTimeout(addButtonAndStartGame, 5000);
+	setTimeout(tallyAndCheck, 15000);
+    }
+
+    rapidClickMinigame2(callback){
+	function tallyAndCheck(callback) {
+	    displayOnGame("yay! you did it!");
+	    setTimeout(displayOnGame, 2000, "(kudos to you that was hard D:!)");
+	    setTimeout(callback, 4000);
+	}
+
+	function addButtonAndStartGame() {
+		document.getElementById("miniGame").innerHTML = "";
+		var button = document.createElement("button");
+		button.id = "mashButton";
+		button.innerHTML = "APPLY!";
+		document.getElementById("miniGame").appendChild(button);
+	}
+
+	displayOnGame("Hit the button as fast as you can!");
+	setTimeout(displayOnGame, 2500, "Hit the button over (-1) times in 10 seconds to win!");
+	setTimeout(addButtonAndStartGame, 5000);
+	setTimeout(tallyAndCheck, 15000, callback);
+    }
 
     render() {
+	var minigames = [
+    	    this.rapidClickMinigame,
+	    this.rapidClickMinigame2,
+	];
         return(
-	    <AutoScrollPage nextPage={3} messages={messages} pageChange={this.props.pageChange}/>
+	    <AutoScrollPage nextPage={3} messages={messages} pageChange={this.props.pageChange} minigames={minigames}/>
 	);
     }
 }

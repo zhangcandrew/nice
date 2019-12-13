@@ -4,7 +4,7 @@ import 'bootstrap/dist/css//bootstrap.min.css';
 import {CreateAndAnimateBox} from './minigames.js';
 
 var speed = 20; /* The speed/duration of the effect in milliseconds */
-var messagePrintSpeed = 2000;
+var messagePrintSpeed = 2200;
 const images = require.context('./pics', true);
 
 class AutoScrollPage extends React.Component {
@@ -31,7 +31,7 @@ class AutoScrollPage extends React.Component {
 	    this.updateScrollHeight()
 	}
 
-	printSpecialMessage(message){
+	printSpecialMessage(message, currMessage){
 	    var secondColon = message.substring(4, message.length).indexOf(":")+4;
 	    var firstColon = message.indexOf(":");
 	    var specialChar = message.substring(firstColon+1, secondColon);
@@ -52,7 +52,7 @@ class AutoScrollPage extends React.Component {
 	        document.getElementById("rollingMessage").appendChild(img); 
 		this.updateScrollHeight();
 	    } else if (specialChar === "mg") {
-	        CreateAndAnimateBox();
+	        CreateAndAnimateBox(this.props.minigames[parseInt(realMessage)], function() { this.rotateMessages(currMessage+1)});
 	    }
 	}
 
@@ -70,7 +70,7 @@ class AutoScrollPage extends React.Component {
 		if(messageCount < this.props.messages.length) {
 			document.getElementById("rollingMessage").innerHTML += "<br><br>";
 			if(this.props.messages[messageCount].substring(0, 4) === "spc:"){
-			    this.printSpecialMessage(this.props.messages[messageCount]);
+			    this.printSpecialMessage(this.props.messages[messageCount], messageCount);
 			    if(this.props.messages[messageCount].substring(4, 6) === "mg"){
 			        return;
 			    }
