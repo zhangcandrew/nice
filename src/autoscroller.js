@@ -75,6 +75,23 @@ class AutoScrollPage extends React.Component {
 		    minigameindex: gameIndex,
 		    showMinigame: true,
 		});
+	    } else if (specialChar === "ga") {
+	        var img_str_array = realMessage.split(",");
+		var gallery = document.createElement("div");
+		gallery.className = "picGallery";
+		var id_substring = realMessage.substring(5, 10);
+		gallery.id = id_substring;
+		document.getElementById("rollingMessage").appendChild(gallery);
+	    	for(var i=0; i<img_str_array.length; i++){
+		    (function(img) {
+		        setTimeout(function(){
+			    var image = document.createElement("img");
+			    image.src = images(img);
+			    image.className="col-xs-3 col-md-3";
+		            document.getElementById(id_substring).appendChild(image)
+		        }, 500*i);
+		    })(img_str_array[i]);
+		}
 	    }
 	}
 

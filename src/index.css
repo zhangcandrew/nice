@@ -92,6 +92,14 @@
     padding: 30px;
 }
 
+.picGallery{
+    display: flex;
+}
+
+.picGallery > img {
+    max-height: 300px;
+}
+
 #mashButton {
     color: black;
     background-color: white;

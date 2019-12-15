@@ -3,6 +3,7 @@ import AutoScrollPage from './autoscroller.js';
 import {displayOnGame} from './minigames.js';
 
 var messages = [
+    'spc:ga:./vicgif1.gif,./vicgif2.gif',
     'spc:f:CHAPTER 1',
     'THE TROUBLE BEGINS',
     '(aka freshman year)',
@@ -56,9 +57,17 @@ var messages = [
     'more your speed',
     'spc:mg:1',
     '', 
-    'AND JUST LIKE THAT THE DREAM TEAM WAS BUILT', 
+    'AND JUST LIKE THAT (1/4) OF THE DREAM TEAM WAS BUILT', 
     'spc:img:./vicgif1.gif',
     'spc:img:./vicgif2.gif',
+    'spc:f:CH1: EPILOGUE', 
+    '',
+    'Freshman year was filled with good vibes and fresh hope.', 
+    'Yang and Erin, joined by their super charasmatic big', 
+    'and loving/amazing/much better Co counter parts',
+    'made new friends, danced their hearts out, ate 50 cent wings', 
+    'got crazy trashed at parties and lived ignorantly bliss',
+    
 ]
 
 class ChapterOne extends React.Component {
