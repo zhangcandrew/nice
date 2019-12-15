@@ -3,7 +3,6 @@ import AutoScrollPage from './autoscroller.js';
 import {displayOnGame} from './minigames.js';
 
 var messages = [
-    'spc:mg:0',
     'spc:f:CHAPTER 1',
     'THE TROUBLE BEGINS',
     '(aka freshman year)',
@@ -39,7 +38,16 @@ var messages = [
     'it\'s time for a minigame!', 
     '(this shit took forever to code)', 
     '((not really))',
+    '(but it\'s dope as F)',
+    '(I don\'t think you guys are ready)',
+    '(you don\'t understand)',
+    '(this is my magnum OPUS)',
+    '(prepare to have you mind EXPLODED)',
+    '(FEAST your eyes on my champion FEAT)',
+    '(as a programmer)',
+    '(ok)',
     'spc:mg:0',
+    '(pretty sick huh? B))',
     '...', 
     'ok well u were supposed to win that...', 
     'so the story would progress...', 
@@ -47,6 +55,10 @@ var messages = [
     'let\'s uh, try a version',
     'more your speed',
     'spc:mg:1',
+    '', 
+    'AND JUST LIKE THAT THE DREAM TEAM WAS BUILT', 
+    'spc:img:./vicgif1.gif',
+    'spc:img:./vicgif2.gif',
 ]
 
 class ChapterOne extends React.Component {
@@ -56,7 +68,7 @@ class ChapterOne extends React.Component {
 	this.rapidClickMinigame2 = this.rapidClickMinigame2.bind(this);
     }
 
-    rapidClickMinigame(callback){
+    rapidClickMinigame(callback, nextMessage){
         var mashCount = 0;
 	
 	function addMashCount() {
@@ -69,8 +81,7 @@ class ChapterOne extends React.Component {
 	    } else {
 	        displayOnGame("you suck lol...  (" + mashCount + " clicks)");
 	    }
-	    console.log(callback);
-	    setTimeout(2000, callback);
+	    setTimeout(callback, 2000, nextMessage);
 	}
 	
 	function addButtonAndStartGame() {
@@ -85,14 +96,15 @@ class ChapterOne extends React.Component {
 	displayOnGame("Hit the button as fast as you can!");
 	setTimeout(displayOnGame, 2500, "Hit the button over 200 times in 10 seconds to win!");
 	setTimeout(addButtonAndStartGame, 5000);
-	setTimeout(tallyAndCheck, 15000);
+	setTimeout(tallyAndCheck, 15000, callback, nextMessage);
     }
 
-    rapidClickMinigame2(callback){
-	function tallyAndCheck(callback) {
+    rapidClickMinigame2(callback, nextMessage){
+	function tallyAndCheck(callback, nextMessage) {
 	    displayOnGame("yay! you did it!");
-	    setTimeout(displayOnGame, 2000, "(kudos to you that was hard D:!)");
-	    setTimeout(callback, 4000);
+	    setTimeout(displayOnGame, 2000, "SUCCESSFULLY APPLIED FOR A BIG!");
+	    setTimeout(displayOnGame, 4000, "(kudos to you that was hard D:!)");
+	    setTimeout(callback, 6000, nextMessage);
 	}
 
 	function addButtonAndStartGame() {
@@ -106,7 +118,7 @@ class ChapterOne extends React.Component {
 	displayOnGame("Hit the button as fast as you can!");
 	setTimeout(displayOnGame, 2500, "Hit the button over (-1) times in 10 seconds to win!");
 	setTimeout(addButtonAndStartGame, 5000);
-	setTimeout(tallyAndCheck, 15000, callback);
+	setTimeout(tallyAndCheck, 15000, callback, nextMessage);
     }
 
     render() {

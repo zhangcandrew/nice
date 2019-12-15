@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css//bootstrap.min.css';
-import {CreateAndAnimateBox} from './minigames.js';
+import Minigame  from './minigames.js';
 
 var speed = 20; /* The speed/duration of the effect in milliseconds */
 var messagePrintSpeed = 2200;
@@ -12,18 +12,33 @@ class AutoScrollPage extends React.Component {
 		super(props);
 		this.typeWriter = this.typeWriter.bind(this);
 		this.rotateMessages = this.rotateMessages.bind(this);
+		this.restartRotateMessages = this.restartRotateMessages.bind(this);
+		this.state = {
+		    innerHTML: "",
+		    nextMessage: 1,
+		    minigameindex: -1, 
+		    showMinigame: false
+		};
 	}
 
 	componentDidMount(){
 	    this.rotateMessages(0);
 	}
 
+	restartRotateMessages(nextMessage){
+		this.setState({
+		    showMinigame: false
+		});
+		this.rotateMessages(nextMessage);
+	}
+
 	updateScrollHeight() {
-	    var messageBlock = document.getElementById("rollingMessageBlock");
+	    var messageBlock = document.getElementById("rollingMessage");
 	    messageBlock.scrollTop = messageBlock.scrollHeight;
 	}
 
 	clearAndUpdateRollingMessageBlock() {
+	    console.log("cleared and updated");
 	    var tempMessageArea = document.getElementById("tempMessageArea");
 	    var rollingMessage = document.getElementById("rollingMessage");
 	    rollingMessage.innerHTML += tempMessageArea.innerHTML;
@@ -31,7 +46,7 @@ class AutoScrollPage extends React.Component {
 	    this.updateScrollHeight()
 	}
 
-	printSpecialMessage(message, currMessage){
+	printSpecialMessage(message, currentMessage){
 	    var secondColon = message.substring(4, message.length).indexOf(":")+4;
 	    var firstColon = message.indexOf(":");
 	    var specialChar = message.substring(firstColon+1, secondColon);
@@ -52,7 +67,14 @@ class AutoScrollPage extends React.Component {
 	        document.getElementById("rollingMessage").appendChild(img); 
 		this.updateScrollHeight();
 	    } else if (specialChar === "mg") {
-	        CreateAndAnimateBox(this.props.minigames[parseInt(realMessage)], function() { this.rotateMessages(currMessage+1)});
+		var nextMessageIndex = currentMessage+1;
+		var gameIndex = parseInt(realMessage);
+	    	this.setState({
+		    innerHTML: document.getElementById("rollingMessage").innerHTML,
+		    nextMessage: nextMessageIndex,
+		    minigameindex: gameIndex,
+		    showMinigame: true,
+		});
 	    }
 	}
 
@@ -83,17 +105,30 @@ class AutoScrollPage extends React.Component {
 		}
 	}
 
-	render() {
-		return(<div id="messageAndButton" className="rollingMessageBlockAndButton col-md-12">
+	displayMinigame(){
+	    return <Minigame callback={this.restartRotateMessages} nextMessage={this.state.nextMessage} minigame={this.props.minigames[this.state.minigameindex]}/>;
+	}
+
+	displayRollingText(){
+	    return <div id="messageAndButton" className="rollingMessageBlockAndButton col-md-12">
 		    <div id="rollingMessageBlock" className="rollingMessageBlock rollingMessageFont col-md-12">
-		      <p id="rollingMessage">
-		      </p>
+		      <div id="rollingMessage">
+		      </div>
 		      <p id="tempMessageArea"/>
 		    </div>
 		    <div className="col-md-12">
-		        <button id="messageButton" onClick={()=>{}}>--></button>
+			<button id="messageButton" onClick={()=>{}}>--></button>
 		    </div>
-		</div>);
+		  </div>;
+    	}
+	
+
+	render() {
+		if(this.state.showMinigame === false){
+			return this.displayRollingText();
+		} else {
+			return this.displayMinigame();
+		}
 	}
 
 

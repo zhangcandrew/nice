@@ -11,6 +11,24 @@
 }
 
 
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    ::-webkit-scrollbar {
+        width: .75em;
+	height: .75em
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: black;
+    }
+								
+    ::-webkit-scrollbar-thumb:vertical {
+        height: 5em;
+	background-color: black;
+    }		
+}
+
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 .omniBack {
     width: 80%;
@@ -35,11 +53,17 @@
     overflow-x: hidden;
 }
 
+#rollingMessage {
+    max-height: 85%;
+    overflow: hidden;
+    padding-bottom: 20px;
+    overflow-y: scroll;
+}
+
 .rollingMessageFont {
     font-size: .6em;
     line-height: 1.4em;
     position: relative;
-    bottom: 20px;
 }
 
 .autoImage {
