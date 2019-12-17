@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css//bootstrap.min.css';
 import Minigame  from './minigames.js';
+import * as Masonry from 'masonry-layout';
 
 var speed = 20; /* The speed/duration of the effect in milliseconds */
 var messagePrintSpeed = 2200;
@@ -57,6 +58,9 @@ class AutoScrollPage extends React.Component {
 		var computedTextSize = parseFloat(getComputedStyle(tempMessageArea).fontSize);
 
 		var n  = Math.floor(((textBoxSize/computedTextSize)-realMessage.length)/2);
+		if(n < -1){
+		    n = -1
+		}
 		var fillString = new Array(n+1).join("-");
 	        var finalMessage = fillString+realMessage+fillString;
 		this.typeWriter(finalMessage, 0);
@@ -82,16 +86,23 @@ class AutoScrollPage extends React.Component {
 		var id_substring = realMessage.substring(5, 10);
 		gallery.id = id_substring;
 		document.getElementById("rollingMessage").appendChild(gallery);
-	    	for(var i=0; i<img_str_array.length; i++){
+		for(var i=0; i<img_str_array.length; i++){
 		    (function(img) {
 		        setTimeout(function(){
 			    var image = document.createElement("img");
 			    image.src = images(img);
-			    image.className="col-xs-3 col-md-3";
+			    image.className="grid-item";
 		            document.getElementById(id_substring).appendChild(image)
-		        }, 500*i);
+		        }, 750);
 		    })(img_str_array[i]);
 		}
+		setTimeout(function() {
+		new Masonry(gallery, {
+		    itemSelector: '.grid-item',
+		    columnWidth: 200
+		});
+		}, 2000);
+
 	    }
 	}
 

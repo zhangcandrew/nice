@@ -2,8 +2,7 @@ import React from 'react';
 import AutoScrollPage from './autoscroller.js';
 import {displayOnGame} from './minigames.js';
 
-var messages = [
-    'spc:ga:./vicgif1.gif,./vicgif2.gif',
+var messages = [ 
     'spc:f:CHAPTER 1',
     'THE TROUBLE BEGINS',
     '(aka freshman year)',
@@ -58,8 +57,7 @@ var messages = [
     'spc:mg:1',
     '', 
     'AND JUST LIKE THAT (1/4) OF THE DREAM TEAM WAS BUILT', 
-    'spc:img:./vicgif1.gif',
-    'spc:img:./vicgif2.gif',
+    'spc:ga:./vicgif1.gif,./vicgif2.gif',
     'spc:f:CH1: EPILOGUE', 
     '',
     'Freshman year was filled with good vibes and fresh hope.', 
@@ -67,7 +65,11 @@ var messages = [
     'and loving/amazing/much better Co counter parts',
     'made new friends, danced their hearts out, ate 50 cent wings', 
     'got crazy trashed at parties and lived ignorantly bliss',
-    
+    '',
+    '',
+
+    'spc:f:how time flies :/',
+    'spc:ga:./dance.gif,./IMG-7778.PNG,./IMG-7779.PNG,./IMG-7863.JPG,./IMG-7883.JPG,./IMG-7904.PNG,./IMG-8039.JPG,./IMG-8040.JPG,./erinugly.gif,./IMG-8110.PNG,./IMG-8112.PNG,./IMG-8179.JPG,./christmas.gif,./IMG-8259.JPG,./IMG-8294.JPG,./IMG-8335.PNG,./IMG-8376.PNG,./IMG-8558.JPG,./IMG-8769.PNG,./IMG-8770.PNG,./IMG-8861.JPG,./IMG-9166.PNG',   
 ]
 
 class ChapterOne extends React.Component {
