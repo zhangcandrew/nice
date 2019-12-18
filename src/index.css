@@ -92,8 +92,8 @@
     padding: 30px;
 }
 
-.grid-item { width: 20%; margin-bottom: 10px;}
-.grid-item--width2 { width: 25%; margin-bottom: 10px;}
+.grid-item { width: 30%; margin: 1%;}
+.grid-item--width2 { width: 48%;}
 
 #mashButton {
     color: black;

@@ -87,22 +87,28 @@ class AutoScrollPage extends React.Component {
 		gallery.id = id_substring;
 		document.getElementById("rollingMessage").appendChild(gallery);
 		for(var i=0; i<img_str_array.length; i++){
-		    (function(img) {
-		        setTimeout(function(){
-			    var image = document.createElement("img");
-			    image.src = images(img);
-			    image.className="grid-item";
-		            document.getElementById(id_substring).appendChild(image)
-		        }, 750);
-		    })(img_str_array[i]);
+		    var image = document.createElement("img");
+		    image.src = images(img_str_array[i]);
+		    image.className="grid-item";
+		    image.style = "visibility:hidden";
+		    document.getElementById(id_substring).appendChild(image)
 		}
 		setTimeout(function() {
-		new Masonry(gallery, {
-		    itemSelector: '.grid-item',
-		    columnWidth: 200
-		});
-		}, 2000);
-
+		    new Masonry(gallery, {
+		        columnWidth: 200
+		    });
+		    var descendents = gallery.getElementsByTagName('*');
+		    for(var j=0; j<descendents.length; ++j){
+		        (function(img) {
+		            setTimeout(function() {
+			        console.log(img);
+		                img.removeAttribute("style");
+				var messageBlock = document.getElementById("rollingMessage");
+	    			messageBlock.scrollTop = messageBlock.scrollHeight;
+		             }, j*400)
+		        })(descendents[j]);
+		    }
+	        }, 500);
 	    }
 	}
 
@@ -115,10 +121,10 @@ class AutoScrollPage extends React.Component {
 	}
 
 	rotateMessages(messageCount) {
-		this.clearAndUpdateRollingMessageBlock();
-		var i=0;
 		if(messageCount < this.props.messages.length) {
-			document.getElementById("rollingMessage").innerHTML += "<br><br>";
+		        this.clearAndUpdateRollingMessageBlock();
+		        var i=0;
+		        document.getElementById("rollingMessage").innerHTML += "<br><br>";
 			if(this.props.messages[messageCount].substring(0, 4) === "spc:"){
 			    this.printSpecialMessage(this.props.messages[messageCount], messageCount);
 			    if(this.props.messages[messageCount].substring(4, 6) === "mg"){
