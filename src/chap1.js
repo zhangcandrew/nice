@@ -69,7 +69,12 @@ var messages = [
     '',
     'spc:f:how time flies :/',  
     'spc:ga:./IMG-7778.PNG,./IMG-7779.PNG,./IMG-7904.PNG,./IMG-7863.JPG,./IMG-8040.JPG,./IMG-7883.JPG,./IMG-9166.PNG,./erinugly.gif,./IMG-8110.PNG,./IMG-8112.PNG,./christmas.gif,./IMG-8861.JPG,./IMG-8039.JPG,./dance.gif,./IMG-8294.JPG,./IMG-8259.JPG,./IMG-8335.PNG,./IMG-8376.PNG,./IMG-8558.JPG,./IMG-8769.PNG,./IMG-8770.PNG', 
-    ]
+    '(scroll up to see the pics)', 
+    '|', 
+    '|', 
+    'V', 
+    '(click butt to continue)'
+]
 
 class ChapterOne extends React.Component {
     constructor(props){

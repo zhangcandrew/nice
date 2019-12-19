@@ -101,3 +101,9 @@
     width: 200px;
     height: 35px;
 }
+
+@media only all and (max-width: 800px) {
+    .grid-item{
+        width: 100%;
+    }
+}

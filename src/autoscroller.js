@@ -5,8 +5,9 @@ import Minigame  from './minigames.js';
 import * as Masonry from 'masonry-layout';
 
 var speed = 20; /* The speed/duration of the effect in milliseconds */
-var messagePrintSpeed = 2200;
+var messagePrintSpeed = 1500;
 const images = require.context('./pics', true);
+var typing = false;
 
 class AutoScrollPage extends React.Component {
 	constructor(props) {
@@ -14,7 +15,9 @@ class AutoScrollPage extends React.Component {
 		this.typeWriter = this.typeWriter.bind(this);
 		this.rotateMessages = this.rotateMessages.bind(this);
 		this.restartRotateMessages = this.restartRotateMessages.bind(this);
-		this.state = {
+		this.tryRotateMessage = this.tryRotateMessage.bind(this);
+		this.typeWritePictures = this.typeWritePictures.bind(this);
+	        this.state = {
 		    innerHTML: "",
 		    nextMessage: 1,
 		    minigameindex: -1, 
@@ -48,6 +51,7 @@ class AutoScrollPage extends React.Component {
 	}
 
 	printSpecialMessage(message, currentMessage){
+	    typing=true;
 	    var secondColon = message.substring(4, message.length).indexOf(":")+4;
 	    var firstColon = message.indexOf(":");
 	    var specialChar = message.substring(firstColon+1, secondColon);
@@ -70,6 +74,7 @@ class AutoScrollPage extends React.Component {
 		img.className = "autoImage";
 	        document.getElementById("rollingMessage").appendChild(img); 
 		this.updateScrollHeight();
+		typing=false;
 	    } else if (specialChar === "mg") {
 		var nextMessageIndex = currentMessage+1;
 		var gameIndex = parseInt(realMessage);
@@ -93,31 +98,45 @@ class AutoScrollPage extends React.Component {
 		    image.style = "visibility:hidden";
 		    document.getElementById(id_substring).appendChild(image)
 		}
-		setTimeout(function() {
-		    new Masonry(gallery, {
-		        columnWidth: 200
-		    });
-		    var descendents = gallery.getElementsByTagName('*');
-		    for(var j=0; j<descendents.length; ++j){
-		        (function(img) {
-		            setTimeout(function() {
-			        console.log(img);
-		                img.removeAttribute("style");
-				var messageBlock = document.getElementById("rollingMessage");
-	    			messageBlock.scrollTop = messageBlock.scrollHeight;
-		             }, j*400)
-		        })(descendents[j]);
-		    }
-	        }, 500);
+		setTimeout((function(){new Masonry(gallery, {
+		    itemSelector: ".grid-item",
+	            columnWidth: 200
+                });})(gallery), 700);
+		var descendents = gallery.getElementsByTagName('*');
+		gallery.style = "height:auto";
+	    	setTimeout(this.typeWritePictures, 1000, descendents, 0);
 	    }
 	}
 
 	typeWriter(message, count) {
 		if (count < message.length) {
+			typing = true;
 			document.getElementById("tempMessageArea").innerHTML += message.charAt(count);
 			count++;
 			setTimeout(this.typeWriter,speed, message, count);
+		}else{
+		    typing = false;
 		}
+	}
+
+	typeWritePictures(descendents, count) {
+	    if(count < descendents.length) {
+		typing = true;
+	        descendents[count].style = "visibility:visible";
+	        this.updateScrollHeight();
+		count++;
+		setTimeout(this.typeWritePictures, 500, descendents, count);
+	    }else {
+	        typing=false;
+	    }
+	}
+
+	tryRotateMessage(messageCount){
+	    if (typing === false) {
+		setTimeout(this.rotateMessages, messagePrintSpeed, messageCount+1);
+	    } else {
+	        setTimeout(this.tryRotateMessage, 100, messageCount);
+	    }
 	}
 
 	rotateMessages(messageCount) {
@@ -133,8 +152,9 @@ class AutoScrollPage extends React.Component {
 			} else {
 			    this.typeWriter(this.props.messages[messageCount], i);
 			}
-			setTimeout(this.rotateMessages, messagePrintSpeed, messageCount+1);
+			this.tryRotateMessage(messageCount);	
 		} else{
+			this.clearAndUpdateRollingMessageBlock();
 		        document.getElementById("messageButton").onclick = () => {this.props.pageChange(this.props.nextPage)};
 		}
 	}
