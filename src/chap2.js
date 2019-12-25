@@ -62,9 +62,8 @@ class ChapterTwo extends React.Component {
 
 	var canvas = document.createElement("canvas");
 	canvas.style.border = 'outset';
-	canvas.style.width = '400px';
-	canvas.style.height = '400px';
-	canvas.style.margin = '-30px';
+	canvas.width = 400;
+	canvas.height = 400;
 	document.getElementById("miniGame").innerHTML = "";
 	document.getElementById("miniGame").appendChild(canvas);
 	var context = canvas.getContext("2d");
@@ -72,8 +71,8 @@ class ChapterTwo extends React.Component {
 	var count = 0;
 	var grid = 20;
 	var snake = {
-	    x: 320, 
-	    y: 320,
+	    x: 120, 
+	    y: 120,
 	    dx: grid, 
 	    dy: 0,
 	    cells: [],
@@ -97,13 +96,13 @@ class ChapterTwo extends React.Component {
 	    snake.x += snake.dx;
 	    snake.y += snake.dy;
 	    if(snake.x <0) {
-	        snake.x = canvas.width - grid;
+	        snake.x = canvas.width;
 	    }else if (snake.x>=canvas.width) {
 	        snake.x=0;
 	    }
-	
+
 	    if(snake.y<0) {
-	        snake.y = canvas.height - grid;
+	        snake.y = canvas.height;
 	    } else if(snake.y>=canvas.height) {
 	        snake.y=0;
 	    }
@@ -122,13 +121,13 @@ class ChapterTwo extends React.Component {
 		}
 		if (cell.x === apple.x && cell.y === apple.y) {
 		    snake.body++;
-		    apple.x = getRandomInt(0, 20)*grid;
-		    apple.y=getRandomInt(0,20)*grid;
+		    apple.x = getRandomInt(0, 1)*grid;
+		    apple.y=getRandomInt(0,1)*grid;
 		}
 		for(var i =index+1; i<snake.cells.length; i++){
 		    if(cell.x===snake.cells[i].x && cell.y===snake.cells[i].y){
-		        snake.x = 160;
-			snake.y = 160;
+		        snake.x = 120;
+			snake.y = 120;
 			snake.cells=[];
 			snake.body = 4;
 			snake.dx = grid;

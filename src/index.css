@@ -101,8 +101,23 @@
     height: 35px;
 }
 
+#miniGame > canvas {
+    height: 400;
+    width: 400;
+}
+
 @media only all and (max-width: 800px) {
     .grid-item{
         width: 100%;
     }
+
+    #miniGame > canvas {
+        height: 200;
+	width: 200;
+    }
+
+    #miniGame {
+        font-size: 15px;
+    }
+
 }
