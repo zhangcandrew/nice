@@ -89,7 +89,6 @@
     align-items: center;
     justify-content: center;
     align-content: center;
-    padding: 30px;
 }
 
 .grid-item { width: 30%; margin: 1%;}

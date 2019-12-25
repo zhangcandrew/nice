@@ -17,8 +17,8 @@ class Minigame extends React.Component {
 	CreateAndAnimateBox(gameFunc) {
 	    var omniBack = document.getElementById("omniBack");
 	    var miniGameDiv = document.getElementById("miniGame");
-            var screenHeight = omniBack.clientHeight - 70;
-	    var screenWidth = omniBack.clientWidth;
+            var screenHeight = omniBack.clientHeight - 50;
+	    var screenWidth = omniBack.clientWidth-50;
 	    var interval =  setInterval(animateBox, 10, this.pixelToNum);
 	    var posHeight = 0;
 	    var posWidth = 0;
