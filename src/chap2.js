@@ -3,7 +3,6 @@ import AutoScrollPage from './autoscroller.js';
 import {displayOnGame} from './minigames.js';
 
 var messages = [ 
-    'spc:mg:0',
     'spc:f:CHAPTER 2',
     'YEAR OF THE PAINTER',
     '(hackerz in the swamp)', 
@@ -45,9 +44,12 @@ var messages = [
     '(uh oh! we didn\'t plan some buses for logistics yet!)', 
     '(you know what that means ;))',
     '((another minigame))',
+    '',
+    '',
     '(:D!)', 
     '', 
     '', 
+    'spc:mg:0',
 ];
 const images = require.context('./pics', true);
 class ChapterTwo extends React.Component {
@@ -59,7 +61,9 @@ class ChapterTwo extends React.Component {
     snakeMinigame(callback, nextMessage){
         var erinhead = document.createElement("img");
 	erinhead.src = images('./IMG-8121.PNG');
-
+	var stopGameID = 0;
+	var stopGame = false;
+	var notEndedAndReturned = true;
 	var canvas = document.createElement("canvas");
 	canvas.style.border = 'outset';
 	canvas.width = 400;
@@ -67,7 +71,6 @@ class ChapterTwo extends React.Component {
 	document.getElementById("miniGame").innerHTML = "";
 	document.getElementById("miniGame").appendChild(canvas);
 	var context = canvas.getContext("2d");
-	var score = 0;
 	var count = 0;
 	var grid = 20;
 	var snake = {
@@ -84,6 +87,13 @@ class ChapterTwo extends React.Component {
 	};
 	function getRandomInt(min, max) {
 	    return Math.floor(Math.random()*(max-min)) + min;
+	}
+	function endAndReturn(){
+	    notEndedAndReturned = false;
+	    displayOnGame("Yay you did it!")
+	    setTimeout(displayOnGame, 2000, "SUCCESSFULLY HELPED ERIN LOGISTICS!");
+	    setTimeout(displayOnGame, 4000, "(aka i fucked up coding that, and don't want to spend the time to fix it)");
+	    setTimeout(callback, 9000, nextMessage);
 	}
 
 	function loop() {
@@ -114,7 +124,7 @@ class ChapterTwo extends React.Component {
 	    
 	    context.fillStyle = 'green';
 	    snake.cells.forEach(function(cell, index) {
-		if(index == 0) {
+		if(index === 0) {
 		    context.drawImage(erinhead, cell.x, cell.y, grid-1, grid-1);
 		} else {
 	            context.fillRect(cell.x, cell.y, grid-1, grid-1);
@@ -126,17 +136,16 @@ class ChapterTwo extends React.Component {
 		}
 		for(var i =index+1; i<snake.cells.length; i++){
 		    if(cell.x===snake.cells[i].x && cell.y===snake.cells[i].y){
-		        snake.x = 120;
-			snake.y = 120;
-			snake.cells=[];
-			snake.body = 4;
-			snake.dx = grid;
-			snake.dy = 0;
-			apple.x=getRandomInt(0,20)*grid;
-			apple.y = getRandomInt(0, 20)*grid;
+		        stopGame = true;
 		    }
 		}
 	    });
+	    if(stopGame) {
+	        cancelAnimationFrame(stopGameID);
+		if(notEndedAndReturned){
+		    endAndReturn();
+		}
+	    }
 	}
 	function addListeners(){
 	    document.addEventListener('keydown', function(e) {
@@ -156,7 +165,7 @@ class ChapterTwo extends React.Component {
 	    });
 	}
 	addListeners();
-	requestAnimationFrame(loop);
+	stopGameID = requestAnimationFrame(loop);
     }
 
     render() {
