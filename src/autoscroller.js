@@ -17,6 +17,7 @@ class AutoScrollPage extends React.Component {
 		this.restartRotateMessages = this.restartRotateMessages.bind(this);
 		this.tryRotateMessage = this.tryRotateMessage.bind(this);
 		this.typeWritePictures = this.typeWritePictures.bind(this);
+		this.waitForVid = this.waitForVid.bind(this);
 	        this.state = {
 		    innerHTML: "",
 		    nextMessage: 1,
@@ -105,6 +106,18 @@ class AutoScrollPage extends React.Component {
 		var descendents = gallery.getElementsByTagName('*');
 		gallery.style = "height:auto";
 	    	setTimeout(this.typeWritePictures, 1000, descendents, 0);
+	    } else if (specialChar === "v") {
+	        var vid = document.createElement("video");
+		vid.className = "messageVideo";
+		vid.autoplay = true;
+		vid.controls = true;
+		var source = document.createElement("source");
+		source.src = images(realMessage);
+		source.type ="video/mp4";
+		vid.appendChild(source);
+	        document.getElementById("rollingMessage").appendChild(vid);
+		this.updateScrollHeight();
+	        this.waitForVid(vid);
 	    }
 	}
 
@@ -117,6 +130,16 @@ class AutoScrollPage extends React.Component {
 		}else{
 		    typing = false;
 		}
+	}
+
+	waitForVid(vid){
+	    if(vid.ended || vid.currentTime === vid.duration){
+	        vid.autoplay = false;
+	        typing = false;
+		return;
+	    }else{
+	        setTimeout(this.waitForVid, 500, vid);
+	    }
 	}
 
 	typeWritePictures(descendents, count) {

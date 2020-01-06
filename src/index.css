@@ -106,7 +106,19 @@
     width: 400;
 }
 
+.messageVideo {
+    height: 300px;
+    width: auto;
+}
+
 @media only all and (max-width: 800px) {
+    .omniBack{
+        width: 100%;
+    }
+    .autoImage{
+        width: 100%;
+	height: auto;
+    }
     .grid-item{
         width: 100%;
     }
@@ -118,6 +130,10 @@
 
     #miniGame {
         font-size: 15px;
+    }
+    .messageVideo {
+        width: 100%;
+	height: auto;
     }
 
 }

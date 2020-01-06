@@ -37,11 +37,11 @@ var messages = [
     'Leo: just have fun with planning SwampHacks!',
     '',
     'spc:img:./oop.JPG', 
-    'Kanye: HUH HEH HAAAA UHHH oooooooh (deep breath) (he just talke to jesus) (he said waddup yeezus)', 
+    'Closed on a Sunday: You my chik fil a', 
     '',
     'spc:img:./trunks.JPG',
-    'Yang: you\'ll definitely want to plan some buses for logistics!', 
-    '(uh oh! we didn\'t plan some buses for logistics yet!)', 
+    'Yang: you\'ll definitely want to post a lot to social media!', 
+    '(uh oh! we didn\'t post a lot to social media!!)', 
     '(you know what that means ;))',
     '((another minigame))',
     '',
@@ -50,12 +50,115 @@ var messages = [
     '', 
     '', 
     'spc:mg:0',
+    'with yang hard at work on social media', 
+    'SwampHacks grew its Instagram follower count to 100+ followers!',
+    '(from nothing)', 
+    '( B) pretty sick bitches)',
+    '', 
+    'spc:f:logistics intermission', 
+    '',
+    'erin didn\'t do anything significant for swamphacks', 
+    'out of respect for her, I still made a minigame', 
+    'spc:mg:1',
+    '', 
+    'spc:f:G R E A T S U C C E S S',
+    'spc:v:./sh4.mp4',
+    '', 
+    '', 
+    'and just like that swamphacks was over', 
+    'through the flurry of planning, over the summer meetings,',
+    'bouts with the school, logistical nightmares', 
+    'social media frenzy and website shenanigans, we pulled together', 
+    'a pretty awesome SwampHacks if I do say so myself', 
+    '', 
+    '', 
+    'It\'s something that brought us closer and a memory I\'ll cherish', 
+    'forever.', 
+    '',
+    '',
+    'for this one all I can say is thanks', 
+    'for being my teammates', 
+    'for believing in something before it was material', 
+    'for following me into the swamp, and emerging', 
+    'tired,', 
+    'tattered,',
+    'sick,', 
+    'missing sleep,',
+    '',
+    'and yet accomplished.',
+    'spc:img:./shclose.JPG',
 ];
 const images = require.context('./pics', true);
 class ChapterTwo extends React.Component {
     constructor(props){
         super(props);
 	this.snakeMinigame = this.snakeMinigame.bind(this);
+        this.postMinigame = this.postMinigame.bind(this);
+    }
+
+    postMinigame(callback, nextMessage){
+	var allImages = [
+	    './IMG-9166.PNG',
+	    './yang1.jpg',
+	    './yang2.jpg',
+	    './yang3.jpg',
+	    './yang11.jpg',
+	    './yang4.jpg',
+	    './yang10.jpg',
+	    './yang5.jpg',
+	    './yang6.jpg',
+	    './yang7.jpg', 
+	    './yang8.jpg', 
+	    './yang9.jpg',
+	];
+	var allCoords = [
+	    "475,785,504,781,513,809,477,808,505,827,532,828,537,839,510,850",
+	    "94,236,135,236,135,252,97,252",
+	    "179,110,203,114,200,125,179,121",
+	    "86,70,99,68,99,78,86,80",
+	    "72,82,100,84,102,108,72,108",
+	    "189,356,225,357,227,375,191,378",
+	    "157,155,178,159,178,174,159,171",
+	    "226,198,261,224,261,202,226,222",
+	    "166,116,195,127,195,141,165,132", 
+	    "164,324,248,318,247,363,174,367", 
+	    "123,126,151,126,150,139,124,142", 
+	    "328,326,370,336,364,357,324,348",
+	];
+        function finishGame(){
+	    displayOnGame("yay! You did it!");
+	    setTimeout(displayOnGame, 2000, "SUCCESSFULLY SOCIAL MEDIA!");
+	    setTimeout(callback, 4000, nextMessage);
+	}
+        function createAndAppendImageAndMap(imIndex, coordIndex){
+	    if(imIndex === allImages.length){
+		finishGame();
+		return;
+	    }
+            var miniGame = document.getElementById("miniGame");
+	    miniGame.innerHTML = "";
+	    var image = document.createElement("img");
+	    image.className = "yangMinigame";
+	    image.src = images(allImages[imIndex]);
+	    image.useMap="#image-map";
+	    miniGame.appendChild(image);
+   
+	    var map = document.createElement("map");
+	    map.name="image-map";
+	    var area = document.createElement("area");
+	    area.href="#";
+            area.onclick= () => {createAndAppendImageAndMap(imIndex+1, coordIndex+1)};
+	    area.coords = allCoords[coordIndex];
+	    area.shape = "poly";
+	    map.appendChild(area);
+	    miniGame.appendChild(map);
+	}
+	function startGame(){
+	    displayOnGame("Help Yang with social media by picking his nose!");
+	    setTimeout(displayOnGame, 2500, "Pick Yang's nose 12 times to win!");
+	    setTimeout(createAndAppendImageAndMap, 5000, 0, 0);
+	}
+	startGame();
     }
 
     snakeMinigame(callback, nextMessage){
@@ -92,7 +195,8 @@ class ChapterTwo extends React.Component {
 	    notEndedAndReturned = false;
 	    displayOnGame("Yay you did it!")
 	    setTimeout(displayOnGame, 2000, "SUCCESSFULLY HELPED ERIN LOGISTICS!");
-	    setTimeout(displayOnGame, 4000, "(aka i fucked up coding that, and don't want to spend the time to fix it)");
+	    setTimeout(displayOnGame, 4000, "(actually you coulda done nothing and won too)");
+	    setTimeout(displayOnGame, 6000, "(like the real deal)");
 	    setTimeout(callback, 9000, nextMessage);
 	}
 
@@ -131,8 +235,8 @@ class ChapterTwo extends React.Component {
 		}
 		if (cell.x === apple.x && cell.y === apple.y) {
 		    snake.body++;
-		    apple.x = getRandomInt(0, 1)*grid;
-		    apple.y=getRandomInt(0,1)*grid;
+		    apple.x = getRandomInt(0, 6)*grid;
+		    apple.y=getRandomInt(0,6)*grid;
 		}
 		for(var i =index+1; i<snake.cells.length; i++){
 		    if(cell.x===snake.cells[i].x && cell.y===snake.cells[i].y){
@@ -168,8 +272,11 @@ class ChapterTwo extends React.Component {
 	stopGameID = requestAnimationFrame(loop);
     }
 
+    
+
     render() {
 	var minigames = [
+	    this.postMinigame,
 	    this.snakeMinigame,
 	];
         return(
