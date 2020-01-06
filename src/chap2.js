@@ -171,8 +171,6 @@ class ChapterTwo extends React.Component {
 	canvas.style.border = 'outset';
 	canvas.width = 400;
 	canvas.height = 400;
-	document.getElementById("miniGame").innerHTML = "";
-	document.getElementById("miniGame").appendChild(canvas);
 	var context = canvas.getContext("2d");
 	var count = 0;
 	var grid = 20;
@@ -267,9 +265,59 @@ class ChapterTwo extends React.Component {
 		    snake.dx = 0;
 		}
 	    });
+	   var container = document.getElementById("miniGame");
+           container.addEventListener("touchstart", startTouch, false);
+           container.addEventListener("touchmove", moveTouch, false);
+	   var initialX = null;
+	   var initialY = null;
+	   function startTouch(e) {
+	       initialX = e.touches[0].clientX;
+               initialY = e.touches[0].clientY;
+	   }
+	   function moveTouch(e) {
+	       if (initialX === null) {
+			     return;
+			   }
+
+	       if (initialY === null) {
+			     return;
+			   }
+
+	       var currentX = e.touches[0].clientX;
+	       var currentY = e.touches[0].clientY;
+
+	       var diffX = initialX - currentX;
+	       var diffY = initialY - currentY;
+	       if (Math.abs(diffX) > Math.abs(diffY)) {
+	           if (diffX > 0) {
+		       snake.dx = -grid;
+		       snake.dy = 0;
+		   } else {
+		       snake.dx = grid;
+		       snake.dy = 0;
+		   }
+	       } else {
+	           if (diffY > 0){
+		       snake.dx = 0;
+		       snake.dy = -grid;
+		   } else {
+		       snake.dx = 0;
+		       snake.dy = grid;
+		   }
+	       }
+	   }
+	}
+	function startGame(loop){
+	    document.getElementById("miniGame").innerHTML = "";
+	    document.getElementById("miniGame").appendChild(canvas);
+	    stopGameID = requestAnimationFrame(loop);
+	    console.log(stopGameID, loop);
 	}
 	addListeners();
-	stopGameID = requestAnimationFrame(loop);
+	displayOnGame("Help Erin Logistics!");
+	setTimeout(displayOnGame, 2500, "Do whatever it is she did while logistics!");
+	setTimeout(displayOnGame, 5000, "(idk)");
+	setTimeout(startGame, 8000, loop);
     }
 
     
