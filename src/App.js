@@ -5,12 +5,13 @@ import IntroPage from './introPage.js';
 import Sike from './sike.js';
 import ChapterOne from './chap1.js';
 import ChapterTwo from './chap2.js';
+import ChapterThree from './chap3.js';
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      pageNum: 3
+      pageNum: 4
     };
     this.childChangePageNum = this.childChangePageNum.bind(this);
   }
@@ -30,7 +31,9 @@ class App extends React.Component {
       return <ChapterOne pageChange={this.childChangePageNum}/>;
     } else if(this.state.pageNum === 3){
       return <ChapterTwo pageChange={this.childChangePageNum}/>;
-    }else {
+    } else if(this.state.pageNum ===4){
+      return <ChapterThree pageChange={this.childChangePageNum}/>;
+    } else {
       return <div/>;
     }
   }

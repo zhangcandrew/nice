@@ -109,8 +109,9 @@ class AutoScrollPage extends React.Component {
 	    } else if (specialChar === "v") {
 	        var vid = document.createElement("video");
 		vid.className = "messageVideo";
-		vid.autoplay = true;
+		vid.autoplay = false;
 		vid.controls = true;
+		vid.preload = "none";
 		var source = document.createElement("source");
 		source.src = images(realMessage);
 		source.type ="video/mp4";

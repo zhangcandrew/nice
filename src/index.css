@@ -1,3 +1,7 @@
+body {
+    overscroll-behavior-y: none;
+}
+
 .App-header {
     background-color: black;
 }
@@ -114,6 +118,7 @@
 @media only all and (max-width: 800px) {
     .omniBack{
         width: 100%;
+	touch-action: manipulation;
     }
     .autoImage{
         width: 100%;

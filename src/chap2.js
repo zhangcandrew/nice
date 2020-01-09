@@ -328,7 +328,7 @@ class ChapterTwo extends React.Component {
 	    this.snakeMinigame,
 	];
         return(
-	    <AutoScrollPage nextPage={3} messages={messages} pageChange={this.props.pageChange} minigames={minigames}/>
+	    <AutoScrollPage nextPage={4} messages={messages} pageChange={this.props.pageChange} minigames={minigames}/>
 	);
     }
 }
