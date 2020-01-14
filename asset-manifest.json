@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.81833271.chunk.css",
-    "main.js": "/static/js/main.013f9cbb.chunk.js",
-    "main.js.map": "/static/js/main.013f9cbb.chunk.js.map",
+    "main.js": "/static/js/main.5478309c.chunk.js",
+    "main.js.map": "/static/js/main.5478309c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.f6814463.js",
     "runtime-main.js.map": "/static/js/runtime-main.f6814463.js.map",
     "static/css/2.0b76d70b.chunk.css": "/static/css/2.0b76d70b.chunk.css",
     "static/js/2.d087543f.chunk.js": "/static/js/2.d087543f.chunk.js",
     "static/js/2.d087543f.chunk.js.map": "/static/js/2.d087543f.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.bf901f31497d1d9e166be33fc4d1a5b7.js": "/precache-manifest.bf901f31497d1d9e166be33fc4d1a5b7.js",
+    "precache-manifest.181f6ac4ea802a3997f85ffe0413a6fe.js": "/precache-manifest.181f6ac4ea802a3997f85ffe0413a6fe.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.0b76d70b.chunk.css.map": "/static/css/2.0b76d70b.chunk.css.map",
     "static/css/main.81833271.chunk.css.map": "/static/css/main.81833271.chunk.css.map",
@@ -64,6 +64,8 @@
     "static/media/dance.gif": "/static/media/dance.96f6fd8f.gif",
     "static/media/erinchap1.JPG": "/static/media/erinchap1.bd0ffce0.JPG",
     "static/media/erinugly.gif": "/static/media/erinugly.9cdce23a.gif",
+    "static/media/finale.jpg": "/static/media/finale.186d3b2f.jpg",
+    "static/media/finale2.jpg": "/static/media/finale2.3ffca083.jpg",
     "static/media/bootstrap.min.css": "/static/media/glyphicons-halflings-regular.fa277232.woff",
     "static/media/memefinale.jpg": "/static/media/memefinale.ddd8334f.jpg",
     "static/media/memes1.jpg": "/static/media/memes1.08396248.jpg",
@@ -133,6 +135,6 @@
     "static/css/2.0b76d70b.chunk.css",
     "static/js/2.d087543f.chunk.js",
     "static/css/main.81833271.chunk.css",
-    "static/js/main.013f9cbb.chunk.js"
+    "static/js/main.5478309c.chunk.js"
   ]
 }
