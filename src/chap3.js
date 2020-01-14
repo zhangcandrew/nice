@@ -2,6 +2,7 @@ import React from 'react';
 import AutoScrollPage from './autoscroller.js';
 
 var messages = [
+    'spc:v:./memes40.mp4', 
     'spc:f:CHAPTER 3',
     '', 
     '',
@@ -34,7 +35,6 @@ var messages = [
     '', 
     'spc:f:Degeneracy Hall of Fame',
     'spc:ga:./memes1.jpg,./memes2.jpg,./memes3.jpg,./memes4.jpg,./memes5.jpg,./memes6.jpg,./memes7.jpg,./memes8.jpg,./memes9.jpg,./memes10.jpg,./memes11.jpg,./memes12.jpg,./memes13.jpg,./memes14.jpg,./memes15.jpg,./memes16.jpg,./memes17.jpg,./memes18.jpg,./memes19.jpg,./memes20.jpg,./memes21.jpg,./memes22.jpg,./memes23.jpg,./memes24.jpg,./memes25.jpg,./memes26.jpg,./memes27.jpg,./memes28.jpg,./memes29.jpg,./memes30.jpg,./memes31.jpg,./memes32.jpg,./memes33.jpg,./memes34.jpg,./memes35.jpg,./memes36.jpg,./memes37.jpg,./memes38.jpg,./memes39.jpg',
-    'spc:v:./memes40.mp4', 
     'spc:v:./memes45.mp4',
     'spc:v:./memes42.mp4',
     '', 
@@ -45,7 +45,7 @@ var messages = [
     'it was a fun semester', 
     'filled with more memories than I thought I could hold',
     '',
-    'spc:img:./memefinale.jpg',
+    '',
     'and a fitting final hurrah to the story', 
     '', 
     ':\')'

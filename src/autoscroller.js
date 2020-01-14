@@ -109,9 +109,8 @@ class AutoScrollPage extends React.Component {
 	    } else if (specialChar === "v") {
 	        var vid = document.createElement("video");
 		vid.className = "messageVideo";
-		vid.autoplay = false;
+		vid.autoplay = true;
 		vid.controls = true;
-		vid.preload = "none";
 		var source = document.createElement("source");
 		source.src = images(realMessage);
 		source.type ="video/mp4";
@@ -135,8 +134,8 @@ class AutoScrollPage extends React.Component {
 
 	waitForVid(vid){
 	    if(vid.ended || vid.currentTime === vid.duration){
-	        vid.autoplay = false;
-	        typing = false;
+	        document.getElementById("rollingMessage").removeChild(vid);
+		typing = false;
 		return;
 	    }else{
 	        setTimeout(this.waitForVid, 500, vid);
