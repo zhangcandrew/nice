@@ -7,7 +7,8 @@ var messages = [
     '', 
     '',
     '', 
-    'I feel like there isn\'t much left to say', 
+    'I feel like there isn\'t much left to say,', 
+    'so I\'ll stop holding you guys hostage now haha.',
     'It\'s been crazy knowing you guys and acting as a', 
     '(dare I say)', 
     'm e n t o r', 
@@ -23,14 +24,17 @@ var messages = [
     'I suppose it\'s an appropriate time to take off the fake "helm" of mentor/big/fuckboy supreme', 
     '',
     '',
+    'Thanks for being my friend for all these years',
     'congrats again on graduating!!',
     '(never thought it\'d happen)',
     '(jk jk)', 
     '',
     '', 
+    'Never stop improving!',
+    'I\'m looking forward to hearing both your next big moves!',
     ':)',
     '',
-    'I\'ll see you around!',
+    'I\'ll see you both around!',
     'spc:img:./finale2.jpg',
     '', 
     'spc:img:./finale.jpg',
@@ -40,7 +44,7 @@ var messages = [
 class ChapterFour extends React.Component {
     render() {
         return(
-	    <AutoScrollPage nextPage={6} messages={messages} pageChange={this.props.pageChange}/>
+	    <AutoScrollPage nextPage={0} messages={messages} pageChange={this.props.pageChange}/>
 	);
     }
 }

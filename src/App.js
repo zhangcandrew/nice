@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      pageNum: 0
+      pageNum: 5
     };
     this.childChangePageNum = this.childChangePageNum.bind(this);
   }
@@ -35,7 +35,7 @@ class App extends React.Component {
     } else if(this.state.pageNum ===4){
       return <ChapterThree pageChange={this.childChangePageNum}/>;
     } else if(this.state.pageNum ===5){
-      return <ChapterFour/>;
+      return <ChapterFour pageChange={this.childChangePageNum}/>;
     } else {
       return <div/>;
     }
