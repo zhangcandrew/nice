@@ -13,7 +13,7 @@ class MessagePage extends React.Component {
 	}
 
 	updateScrollHeight() {
-	    var messageBlock = document.getElementById("rollingMessageBlock");
+	    var messageBlock = document.getElementById("rollingMessage");
 	    messageBlock.scrollTop = messageBlock.scrollHeight;
 	}
 
