@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      pageNum: 5
+      pageNum: 0
     };
     this.childChangePageNum = this.childChangePageNum.bind(this);
   }
